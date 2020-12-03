@@ -3,5 +3,5 @@ npm i && npm run build
 
 cd ..
 
-cd back
-npm i && npm start
+cd server
+npm i && npm run tsc && npm start
