@@ -1,0 +1,16 @@
+body {
+    background-color: cornflowerblue;
+}
+
+h1 {
+    color: white;
+    font-family: monospace;
+    font-size: 60px;
+    text-align: right;
+}
+
+.posts {
+    display: flex;
+    padding: 1rem;
+    justify-content: center;
+}
