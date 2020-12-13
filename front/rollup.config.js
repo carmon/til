@@ -4,7 +4,7 @@ import { terser } from "rollup-plugin-terser";
 export default {
   input: "./src/index.ts",
   output: {
-    file: "../server/static/bundle.js",
+    file: "../blog/bundle.js",
     format: "iife",
     name: "lib",
     plugins: [terser()]
