@@ -1,0 +1,10 @@
+{
+  "name": "til-api",
+  "version": "1.0.0",
+  "description": "TIL: a minimalistic personal blog API",
+  "author": "Carmon",
+  "license": "ISC",
+  "devDependencies": {
+    "@vercel/node": "^1.8.5"
+  }
+}

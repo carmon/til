@@ -10,14 +10,11 @@ const parent = document.createElement("div");
 parent.className = "posts"
 root.append(parent);
 
-fetch(
-    'https://functions.carmon.vercel.app/api/til-posts', 
-    { method: 'GET' }
-).then(async res => {
+fetch('api/get-posts', { method: 'GET' }).then(async res => {
     const json = await res.json();
     const tags = json.reduce(
         (prev, curr) => 
-            `${prev}<zero-md><script type="text/markdown">${curr.text}</script></zero-md>`,
+            `${prev}<zero-md src="posts/${curr}"></zero-md>`,
         '');
     const div = document.createElement("div");
     div.innerHTML = tags;

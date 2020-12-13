@@ -1,0 +1,7 @@
+{
+    "functions": {
+      "api/get-posts.ts": {
+        "includeFiles": "posts/*.md"
+      }
+    }
+}
