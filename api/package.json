@@ -5,6 +5,7 @@
   "author": "Carmon",
   "license": "ISC",
   "devDependencies": {
-    "@vercel/node": "^1.8.5"
+    "@vercel/node": "^1.8.5",
+    "@types/node": "^14.14.16"
   }
 }

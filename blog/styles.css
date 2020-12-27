@@ -33,8 +33,13 @@ h2 {
 .data {
     background-color: #f7d488;
     display: flex;
+    font-family: monospace;
     justify-content: flex-end;
     padding: .5rem;
+}
+
+.data a {
+    margin-left: .5rem;
 }
 
 zero-md {

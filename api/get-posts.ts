@@ -1,10 +1,16 @@
-import { readdir } from 'fs';
+import { promises } from 'fs';
 import { join } from 'path';
 import { NowRequest, NowResponse } from '@vercel/node';
 
-export default (_: NowRequest, res: NowResponse) => {
-    readdir(join(process.cwd(), 'blog/posts'), (err, files) => {
-        if (err) res.status(200).send(err);
-        res.status(200).send(files);
-    });
+const ROOT = join(process.cwd(), 'blog/posts');
+
+export default async (_: NowRequest, res: NowResponse) => {
+    const files: string[] = await promises.readdir(ROOT);
+    if (!files) res.status(200).send(`Files not found in ${ROOT}.`);
+    res.status(200).send(await Promise.all(
+        files.map(async name => {
+            const { birthtime: date } = await promises.stat(`${ROOT}/${name}`);
+            return { date, name };
+        })
+    ));
 }
