@@ -9,7 +9,7 @@ fetch('api/get-posts', { method: 'GET' }).then(async res => {
     const json = await res.json();
     const tags = json.reduce(
         (prev, curr) => 
-            `${prev}<zero-md src="posts/${curr}"></zero-md><a class="data" href="./posts/${curr}">${curr}</a>`,
-        '<h1>TIL - a personal blog</h1>');
+            `${prev}<a class="data" href="./posts/${curr}">${curr}</a><zero-md src="posts/${curr}"></zero-md>`,
+        '<h1>TIL - a personal blog</h1><h2>by Carmon <a href="https://github.com/carmon/til">check repo</a></h2>');
     posts.innerHTML = tags;
 });

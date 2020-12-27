@@ -6,7 +6,18 @@ h1 {
     color:#e9f7ca;
     font-family: monospace;
     font-size: 60px;
+    margin: 0;
     text-align: right;
+    user-select: none;
+}
+
+h2 {
+    color:#e9f7ca;
+    font-family: monospace;
+    font-size: 20px;
+    margin: 0 0 1rem 0;
+    text-align: right;
+    user-select: none;
 }
 
 #root {
@@ -21,8 +32,9 @@ h1 {
 
 .data {
     background-color: #f7d488;
+    display: flex;
+    justify-content: flex-end;
     padding: .5rem;
-    text-align: right;
 }
 
 zero-md {
