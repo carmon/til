@@ -1,21 +1,32 @@
 body {
-    background-color: cornflowerblue;
+    background-color: #f9a03f;
 }
 
 h1 {
-    color: white;
+    color:#e9f7ca;
     font-family: monospace;
     font-size: 60px;
     text-align: right;
 }
 
-.posts {
+#root {
     display: flex;
-    padding: 1rem;
     justify-content: center;
+    padding: 1rem;
+}
+
+.posts {
+    max-width: 75%;
+}
+
+.data {
+    background-color: #f7d488;
+    padding: .5rem;
+    text-align: right;
 }
 
 zero-md {
-    background-color: lightskyblue;
-    padding: 2rem;
+    background-color: #eaefb1;
+    /* margin-bottom: 1rem; */
+    padding: 1.5rem;
 }
