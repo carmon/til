@@ -1,2 +1,2 @@
-cd front
-npm i && npm run build
+cd creator
+npm i && npm start
