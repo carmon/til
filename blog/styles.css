@@ -38,12 +38,21 @@ h2 {
     padding: .5rem;
 }
 
-.data a {
-    margin-left: .5rem;
+.data button {
+    background: none;
+    border: none;
+    color: blue;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.data button:focus {
+    color: purple;
+    outline: 0;
 }
 
 zero-md {
     background-color: #eaefb1;
-    /* margin-bottom: 1rem; */
     padding: 1.5rem;
 }
