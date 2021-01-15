@@ -1,6 +1,7 @@
 import { promises } from 'fs';
 import { join } from 'path';
 
+const DATES_ROOT = join(process.cwd(), './dates.json');
 const POSTS_ROOT = join(process.cwd(), '../blog/posts');
 const INDEX_TEMPLATE = join(process.cwd(), 'templates/index.html');
 const INDEX_SAVE_PATH = join(process.cwd(), '../blog/index.html');
@@ -14,12 +15,13 @@ const createBlog = async () => {
         console.log(`Files not found in ${POSTS_ROOT}.`);
         return;
     }
-    const res = await Promise.all(
-        files.map(async name => {
-            const { birthtime: date } = await promises.stat(`${POSTS_ROOT}/${name}`);
-            return { date, name };
-        })
-    );
+
+    const datesFile = await promises.readFile(DATES_ROOT);
+    const datesJson = JSON.parse(Buffer.from(datesFile).toString());
+    const res = files.map(name => {
+        return { date: new Date(datesJson[name]), name };
+    }).sort((a, b) => a.date > b.date ? -1 : 1);
+    console.log(res);
 
     const template = await promises.readFile(INDEX_TEMPLATE);
     const html = Buffer.from(template).toString();
@@ -51,10 +53,7 @@ const createBlog = async () => {
     const tags = res.reduce(
         (prev, curr) => {
             const { date, name } = curr;
-            const [d,h] = date.toJSON().split('T');
-            const time = d.split('-').reverse().join('/');
-            const hour = h.slice(0, h.lastIndexOf(':'));
-            const data = `<div class="data">${time} ${hour} | ${createButton(name)}</div>`;
+            const data = `<div class="data">${date.toLocaleString()} | ${createButton(name)}</div>`;
             const post = `<div class="post" id="${name}">${data}${createMarkdown(name)}</div>`;
             return `${prev}${post}`;
         },
