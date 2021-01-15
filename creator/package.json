@@ -5,7 +5,8 @@
   "author": "Carmon",
   "license": "ISC",
   "scripts": {
-    "build": "sh get-dates.sh && node -r ts-node/register index.ts"
+    "gen:dates": "sh get-dates.sh",
+    "build": "node -r ts-node/register index.ts"
   },
   "devDependencies": {
     "@types/node": "^14.14.16",

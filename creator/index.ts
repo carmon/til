@@ -21,7 +21,6 @@ const createBlog = async () => {
     const res = files.map(name => {
         return { date: new Date(datesJson[name]), name };
     }).sort((a, b) => a.date > b.date ? -1 : 1);
-    console.log(res);
 
     const template = await promises.readFile(INDEX_TEMPLATE);
     const html = Buffer.from(template).toString();
