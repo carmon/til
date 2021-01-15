@@ -47,13 +47,13 @@ const createBlog = async () => {
         });
     };
     </script>`
-    const begin = '<div class="posts">';
+    const begin = '<div class="blog">';
     const header = '<h1>TIL - a personal blog</h1><h2>by Carmon <a href="https://github.com/carmon/til">check repo</a></h2>';
     const tags = res.reduce(
         (prev, curr) => {
             const { date, name } = curr;
             const data = `<div class="data">${date.toLocaleString()} | ${createButton(name)}</div>`;
-            const post = `<div class="post" id="${name}">${data}${createMarkdown(name)}</div>`;
+            const post = `<div id="${name}">${data}${createMarkdown(name)}</div>`;
             return `${prev}${post}`;
         },
         fn + begin + header);

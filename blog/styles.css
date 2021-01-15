@@ -26,7 +26,8 @@ h2 {
     padding: 1rem;
 }
 
-.posts {
+.blog {
+    min-width: 75%;
     max-width: 75%;
 }
 
