@@ -1,5 +1,5 @@
-How is this blog made?
-======================
+How is this blog made? #1
+=========================
 
 This is a static blog bundled all [in the same repository](https://github.com/carmon/til).
 Every inch that you see is possible with the Vercel magic, which allowed me to use a

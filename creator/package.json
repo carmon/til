@@ -6,7 +6,8 @@
   "license": "ISC",
   "scripts": {
     "gen:dates": "sh get-dates.sh",
-    "build": "node -r ts-node/register index.ts"
+    "build": "node -r ts-node/register index.ts",
+    "deploy": "npm run gen:dates && npm run build"
   },
   "devDependencies": {
     "@types/node": "^14.14.16",

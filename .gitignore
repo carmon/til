@@ -1,3 +1,10 @@
 .rpt2_cache
 node_modules/
 .vercel
+.vscode
+# posts not completed
+soon/ 
+
+# generated files
+blog/index.html
+creator/dates.json
