@@ -7,6 +7,7 @@ const INDEX_TEMPLATE = join(process.cwd(), 'templates/index.html');
 const INDEX_SAVE_PATH = join(process.cwd(), '../blog/index.html');
 debugger;
 
+const createTagLink = (tag: string) => `<a style="margin-right:2px;" href="?${tag}">${tag}</a>`;
 const createShowButton = (attr: string) => `<button onclick="show('${attr}')">${attr}</button>`;
 const createMarkdown = (name: string) => `<zero-md src="posts/${name}"></zero-md>`;
 
@@ -32,6 +33,27 @@ const createBlog = async () => {
     const html = Buffer.from(template).toString();
 
     const fn = `<script>
+    window.onload = () => {
+        const queryString = window.location.search;
+        if (!queryString || queryString.charAt(0) !== '?') return;
+
+        const targetTag = queryString.substr(1);
+
+        const back = document.createElement('div');
+        back.style.display = 'flex';
+        back.style.justifyContent = 'center';
+        back.style.margin = '5px 0';
+        back.style.fontFamily = 'arial';
+        back.innerHTML = 'Currently viewing ' + targetTag + ' tag, click <a style="margin: 0 2px;" href="'+ window.location.origin +'">here</a> to remove tag filter.';
+
+        const blog = document.getElementsByClassName('blog')[0];
+        blog.insertBefore(back, blog.children[2]); 
+        
+        [...document.getElementsByClassName('post')].forEach(e => { 
+            e.hidden = !e.id.includes(targetTag);
+        });
+    };
+
     const showAll = id => {
         const a = [...document.getElementsByClassName('post')];
         a.forEach(e => { e.hidden = false; }); 
@@ -57,7 +79,7 @@ const createBlog = async () => {
     const markdowns = res.reduce(
         (prev, curr) => {
             const { date, name, tag } = curr;
-            const data = `<div class="data"> ${tag || 'no tags'} | ${date.toLocaleString()} | ${createShowButton(name)}</div>`;
+            const data = `<div class="data"> ${createTagLink(tag) || 'no tags'} | ${date.toLocaleString()} | ${createShowButton(name)}</div>`;
             const post = `<div id="${name}" class="post">${data}${createMarkdown(name)}</div>`;
             return `${prev}${post}`;
         },
