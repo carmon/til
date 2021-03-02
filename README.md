@@ -21,4 +21,3 @@ Future plans
 ============
 
 - Rudimentary file watcher
-- Full usage of tags

@@ -1,2 +1,2 @@
 cd creator
-npm i && npm run deploy
+npm i && npm run build
