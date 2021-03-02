@@ -7,7 +7,7 @@ const INDEX_TEMPLATE = join(process.cwd(), 'templates/index.html');
 const INDEX_SAVE_PATH = join(process.cwd(), '../blog/index.html');
 debugger;
 
-const createButton = (name: string) => `<button onclick="detail('${name}')">${name}</button>`;
+const createShowButton = (attr: string) => `<button onclick="show('${attr}')">${attr}</button>`;
 const createMarkdown = (name: string) => `<zero-md src="posts/${name}"></zero-md>`;
 
 const getTag = (name: string) => 
@@ -32,17 +32,16 @@ const createBlog = async () => {
     const html = Buffer.from(template).toString();
 
     const fn = `<script>
-    const showAll = (id) => {
-        let a = [...document.getElementsByClassName('post')];
+    const showAll = id => {
+        const a = [...document.getElementsByClassName('post')];
         a.forEach(e => { e.hidden = false; }); 
         a.filter(e => e.id === id).forEach(e => {
             e.firstChild.firstElementChild.textContent = id;
-            e.firstChild.firstElementChild.onclick = () => detail(id);
+            e.firstChild.firstElementChild.onclick = () => show(id);
         });
     };
-    const detail = id => {
-        let a = [...document.getElementsByClassName('post')];
-        a.forEach(e => { 
+    const show = id => {
+        [...document.getElementsByClassName('post')].forEach(e => { 
             const sel = e.id === id;
             e.hidden = !sel;
             if (sel) {
@@ -52,14 +51,14 @@ const createBlog = async () => {
             } 
         });
     };
-    </script>`
+    </script>`;
     const begin = '<div class="blog">';
     const header = '<h1>TIL - a personal blog</h1><h2>by Carmon <a href="https://github.com/carmon/til">check repo</a></h2>';
     const markdowns = res.reduce(
         (prev, curr) => {
-            const { date, name } = curr;
-            const data = `<div class="data">${date.toLocaleString()} | ${createButton(name)}</div>`;
-            const post = `<div id="${name}">${data}${createMarkdown(name)}</div>`;
+            const { date, name, tag } = curr;
+            const data = `<div class="data"> ${tag || 'no tags'} | ${date.toLocaleString()} | ${createShowButton(name)}</div>`;
+            const post = `<div id="${name}" class="post">${data}${createMarkdown(name)}</div>`;
             return `${prev}${post}`;
         },
         fn + begin + header);

@@ -12,5 +12,13 @@ Stack info
 How to run locally
 ==================
 
-- Run `build.sh` script in root
-- Use any simple http server to serve contents inside `/blog` folder, my favourite: `npx http-server`
+In root folder:
+
+- Run `build.sh` script
+- Run `local-run.sh` script
+
+Future plans
+============
+
+- Rudimentary file watcher
+- Full usage of tags
