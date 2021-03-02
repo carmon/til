@@ -31,12 +31,20 @@ const createBlog = async () => {
     const template = await promises.readFile(INDEX_TEMPLATE);
     const html = Buffer.from(template).toString();
 
+    const tags = res.reduce((prev, { tag }) => {
+        if (!tag) return prev;
+        if (prev.includes(tag)) return prev;
+
+        return [...prev, tag];
+    }, [])
+
     const fn = `<script>
     window.onload = () => {
         const queryString = window.location.search;
         if (!queryString || queryString.charAt(0) !== '?') return;
-
+        
         const targetTag = queryString.substr(1);
+        if (![${tags.map(t => `'${t}'`)}].includes(targetTag)) return;
 
         const back = document.createElement('div');
         back.style.display = 'flex';
