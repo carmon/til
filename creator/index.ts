@@ -5,7 +5,6 @@ const DATES_ROOT = join(process.cwd(), './dates.json');
 const POSTS_ROOT = join(process.cwd(), '../blog/posts');
 const INDEX_TEMPLATE = join(process.cwd(), 'templates/index.html');
 const INDEX_SAVE_PATH = join(process.cwd(), '../blog/index.html');
-debugger;
 
 const createTagLink = (tag: string) => `<a style="margin-right:2px;" href="?${tag}">${tag}</a>`;
 const createShowButton = (attr: string) => `<button onclick="show('${attr}')">${attr}</button>`;
