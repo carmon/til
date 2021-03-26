@@ -1,7 +1,7 @@
 {
   "name": "creator",
   "version": "1.0.0",
-  "description": "",
+  "description": "TIL blog static HTML creator.",
   "author": "Carmon",
   "license": "ISC",
   "scripts": {
