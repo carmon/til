@@ -20,18 +20,16 @@ The source of truth must be the github API, in getting to know when a file was f
 **at least** sort it by last modified as the bash/git solution does. A github action would not suffice in
 this case.
 
+## Webhook app with github & twitter services
+
+Current implementation is a daemon node app. APP listens a request call from a github app webhook. If push event happens on given `repo`, `branch` and `folder`, app checks
+for files added to folders and interprets them as **posts**, then apps gets that file path content from same repository and reads first line of file, as title. That `title`
+is inserted into a status notification throw a twitter app service.
+
 ### Goals
 
-1) Github app listens for a push, if a file `./blog/posts/*.md` was added then triggers nexts steps 
+1) ~~Github app listens for a push, if a file `./blog/posts/*.md` was added then triggers nexts steps~~ 
 2) App uses a bot to make a PR in branch with `dates.json` updated
 3) Bot merges PR __See 'Twitter post' section below__
 4) Branch must not be a vercel buildable environment
 5) Bot then merges to **main** branch, and that triggers vercel build with dates OK
-
-## Twitter post
-
-### Goals
-
-1) Github app listens for a push to `main` branch
-1) App gets last addition to `./blog/posts/*.md` and loads it
-1) App calls a service to make a twitter post with partial content of markdown file

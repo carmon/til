@@ -47,11 +47,14 @@ const createBlog = async () => {
         if (![${tags.map(t => `'${t}'`)}].includes(targetTag)) return;
 
         const back = document.createElement('div');
+        back.style.backgroundColor = 'black';
+        back.style.color = 'white';
         back.style.display = 'flex';
         back.style.justifyContent = 'center';
         back.style.margin = '5px 0';
-        back.style.fontFamily = 'arial';
-        back.innerHTML = 'Currently viewing ' + targetTag + ' tag, click <a style="margin: 0 2px;" href="'+ window.location.origin +'">here</a> to remove tag filter.';
+        back.style.padding = '5px 0';
+        back.style.fontFamily = 'monospace';
+        back.innerHTML = 'CURRENTLY VIEWING <b style="color: cyan; font-size: 14px; margin: 0 5px;">' + targetTag.toUpperCase() + '</b> TAG, CLICK <a style="color: red; font-size: 14px; margin: 0 5px;" href="'+ window.location.origin +'">HERE</a> TO REMOVE TAG FILTER.';
 
         const blog = document.getElementsByClassName('blog')[0];
         blog.insertBefore(back, blog.children[2]); 
@@ -86,7 +89,7 @@ const createBlog = async () => {
     const markdowns = res.reduce(
         (prev, curr) => {
             const { date, name, tag } = curr;
-            const data = `<div class="data"> ${createTagLink(tag) || 'no tags'} | ${date.toLocaleString()} | ${createShowButton(name)}</div>`;
+            const data = `<div class="data"> ${tag ? createTagLink(tag) : 'no tags'} | ${date.toLocaleString()} | ${createShowButton(name)}</div>`;
             const post = `<div id="${name}" class="post">${data}${createMarkdown(name)}</div>`;
             return `${prev}${post}`;
         },

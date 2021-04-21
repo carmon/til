@@ -1,9 +1,15 @@
+# config
 .rpt2_cache
-node_modules/
 .vercel
 .vscode
-# posts not completed
-soon/ 
+development.json
 
-# generated files
+# build
+node_modules/
+dist/
+
+# generated
 blog/index.html
+
+# WIP
+soon/ 
