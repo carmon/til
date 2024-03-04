@@ -3,6 +3,7 @@ body {
 }
 
 h1 {
+    border-bottom: 2px solid #f9a03f;
     color:#e9f7ca;
     font-family: monospace;
     font-size: 60px;
